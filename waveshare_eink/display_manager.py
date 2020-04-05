@@ -1,10 +1,10 @@
-import waveshare_epd
+import importlib
 from PIL import Image,ImageDraw,ImageFont
 
 class DisplayManager():
 
     def __init__(self, screen='epd7in5_V2'):
-        epd_factory = getattr(waveshare_epd, screen)
+        epd_factory = importlib.import_module(f'waveshare_epd.{screen}')
         epd = epd_factory.EPD()
         epd.init()
         epd.Clear()

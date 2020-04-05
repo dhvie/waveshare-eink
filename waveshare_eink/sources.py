@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from weasyprint import HTML, CSS
+from pathlib import Path
 
 class Source(ABC):
 
@@ -14,6 +15,7 @@ class SourceHTML(Source):
         self.__output_path = output_path
 
     def refresh(self, display):
+        css_path = Path(__file__).parent / 'style' / 'page.css'
         HTML(self.__url).write_png(self.__output_path, stylesheets=[
             CSS(string=f'''
                 @page {{ 
@@ -26,7 +28,7 @@ class SourceHTML(Source):
                     background-color: #FFFFFF;
                 }}
                 '''),
-                CSS(filename='./style/page.css')
+                CSS(css_path)
         ])
 
         return self.__output_path
