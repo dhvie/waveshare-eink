@@ -1,10 +1,9 @@
-from distutils.core import setup
+from distutils.core import setup, find_packages
 
-setup(name='waveshare_eink_components',
+setup(name='waveshare_eink',
       version='1.0',
-      description='Convenient set of components and layouts for Waveshare eink',
-      author='Greg Ward',
-      author_email='gward@python.net',
-      url='https://www.python.org/sigs/distutils-sig/',
-      packages=['distutils', 'distutils.command'],
+      description='Small client and flask app which allows displaying HTML CSS marked up document on Waveshare e-ink displays',
+      author='David Hutfless',
+      author_email='dhvie85@gmail.com',
+      packages=find_packages(),
      )
