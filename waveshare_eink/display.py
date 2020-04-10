@@ -7,7 +7,7 @@ import time
 def main(args):
     display = DisplayManager()
 
-    source = SourceHTML(url='http://127.0.0.1:5000/test')
+    source = SourceHTML(url='http://127.0.0.1:5000/main')
     output_path = source.refresh(display)
     display.render_image(output_path)
 
