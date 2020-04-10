@@ -6,4 +6,7 @@ setup(name='waveshare_eink',
       author='David Hutfless',
       author_email='dhvie85@gmail.com',
       packages=find_packages(),
+      install_requires={
+            'gunicorn'
+      }
      )
