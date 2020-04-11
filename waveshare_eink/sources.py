@@ -30,12 +30,14 @@ class SourceHTML(Source):
                     font-family: 'Roboto';
                     font-style: normal;
                     font-weight: 400;
-                    src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Mu4mxP.ttf) format('truetype');
+                    src: local('Roboto'), local('Roboto-Regular');
                 }}
 
                 body {{
                     background-color: #FFFFFF;
-                    font-family: Roboto
+                    font-family: Roboto;
+                    font-style: medium;
+                    font-color: #000000;
                 }}
                 ''', font_config=font_config),
                 CSS(css_path)
