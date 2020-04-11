@@ -6,25 +6,33 @@ import argparse
 
 class OpenWeatherAPI():
 
-    url = j2.Template('https://api.openweathermap.org/data/2.5/onecall?lat={{lat}}&lon={{lon}}&appid={{api_key}}')
+    url = j2.Template('https://api.openweathermap.org/data/2.5/onecall?lat={{lat}}&lon={{lon}}&appid={{api_key}}&units={{units}}')
 
-def main(args):
-    app = Flask("ws-eink")
+    def __init__(self, api_key):
+        self.__api_key = api_key
 
-    @app.route('/<page>', methods=['GET'])
-    def pages(page=None):
-        if page is None:
-            page = 'main'
-        return render_template(f'{page}.html')
+    def call(self, lon, lat, units='imperial'):
+        return requests.get(url.render(api_key=self.__api_key, lon=lon, lat=lat, units=units))
 
 
-    @app.route('/weather', methods=['GET'])
-    def weather():
-        pass
+parser = argparse.ArgumentParser()
+parser.add_argument("--own", type=str)
+parser.add_argument("--lon", type=float)
+parser.add_argument("--lat", type=float)
+args = parser.parse_args()
+
+app = Flask("ws-eink")
+
+own_api = OpenWeatherAPI(args.own)
+
+@app.route('/<page>', methods=['GET'])
+def pages(page=None):
+    if page is None:
+        page = 'main'
+    return render_template(f'{page}.html')
 
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--own", type=str)
-    args = parser.parse_args()
-    main(args)
+@app.route('/weather', methods=['GET'])
+def weather():
+    result = own_api.call(args.lon, args.lat)
+
