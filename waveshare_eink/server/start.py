@@ -14,7 +14,7 @@ class OpenWeatherAPI():
         self.__api_key = api_key
 
     def call(self, lon, lat, units='imperial'):
-        return requests.get(url.render(api_key=self.__api_key, lon=lon, lat=lat, units=units))
+        return requests.get(OpenWeatherAPI.url.render(api_key=self.__api_key, lon=lon, lat=lat, units=units))
 
 
 args = {
