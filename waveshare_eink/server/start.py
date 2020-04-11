@@ -31,7 +31,8 @@ own_api = OpenWeatherAPI(args['own'])
 def pages(page=None):
     if page is None:
         page = 'main'
-    return render_template(f'{page}.html')
+    weather = weather()
+    return render_template(f'{page}.html', weather=weather)
 
 
 @app.route('/weather', methods=['GET'])
