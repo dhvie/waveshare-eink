@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+import json
 import jinja2 as j2
 import requests
 import argparse
@@ -36,4 +37,5 @@ def pages(page=None):
 @app.route('/weather', methods=['GET'])
 def weather():
     result = own_api.call(args['lon'], args['lat'])
+    return json.dumps(result.body)
 
