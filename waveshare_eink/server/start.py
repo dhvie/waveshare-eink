@@ -17,9 +17,9 @@ class OpenWeatherAPI():
 
 
 args = {
-    own: os.environ['OWN_API'],
-    lon: os.environ['LON'],
-    lat: os.environ['LAT']
+    'own': os.environ['OWN_API'],
+    'lon': os.environ['LON'],
+    'lat': os.environ['LAT']
 }
 
 app = Flask("ws-eink")
