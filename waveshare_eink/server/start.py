@@ -24,7 +24,7 @@ args = {
 
 app = Flask("ws-eink")
 
-own_api = OpenWeatherAPI(args.own)
+own_api = OpenWeatherAPI(args['own'])
 
 @app.route('/<page>', methods=['GET'])
 def pages(page=None):
@@ -35,5 +35,5 @@ def pages(page=None):
 
 @app.route('/weather', methods=['GET'])
 def weather():
-    result = own_api.call(args.lon, args.lat)
+    result = own_api.call(args['lon'], args['lat'])
 
