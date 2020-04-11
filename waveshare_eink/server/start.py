@@ -14,7 +14,7 @@ class OpenWeatherAPI():
         self.__api_key = api_key
 
     def call(self, lon, lat, units='imperial'):
-        return requests.get(OpenWeatherAPI.url.render(api_key=self.__api_key, lon=lon, lat=lat, units=units))
+        return requests.get(OpenWeatherAPI.url.render(api_key=self.__api_key, lon=lon, lat=lat, units=units)).text
 
 
 args = {
@@ -36,6 +36,6 @@ def pages(page=None):
 
 @app.route('/weather', methods=['GET'])
 def weather():
-    result = own_api.call(args['lon'], args['lat'])
-    return json.dumps(result.body)
+    response = own_api.call(args['lon'], args['lat'])
+    return response
 
