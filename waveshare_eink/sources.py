@@ -36,8 +36,7 @@ class SourceHTML(Source):
                 body {{
                     background-color: #FFFFFF;
                     font-family: Roboto;
-                    font-style: medium;
-                    font-color: #000000;
+                    color: #000000;
                 }}
                 ''', font_config=font_config),
                 CSS(css_path)
