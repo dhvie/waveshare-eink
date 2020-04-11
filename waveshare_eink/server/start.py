@@ -3,6 +3,7 @@ from flask import render_template
 import jinja2 as j2
 import requests
 import argparse
+import os
 
 class OpenWeatherAPI():
 
@@ -15,11 +16,11 @@ class OpenWeatherAPI():
         return requests.get(url.render(api_key=self.__api_key, lon=lon, lat=lat, units=units))
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--own", type=str)
-parser.add_argument("--lon", type=float)
-parser.add_argument("--lat", type=float)
-args = parser.parse_args()
+args = {
+    own: os.environ['OWN_API'],
+    lon: os.environ['LON'],
+    lat: os.environ['LAT']
+}
 
 app = Flask("ws-eink")
 
