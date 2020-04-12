@@ -63,7 +63,7 @@
       </div>
       <div class="col-3">
         <h2>News</h2>
-        {% for idx in range([8, news.items|count]|min) %}
+        {% for idx in range([8, news.items|length]|min) %}
           <div class="row border-bottom">
             <div class="col-6">
               <h4>{{news.items[idx].title}}</h4>
