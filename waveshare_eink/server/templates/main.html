@@ -13,6 +13,9 @@
         float: left;
         display: block;
       }
+      .padding-left-5 {
+        padding-left: 5%;
+      }
       .row {
         width: 100%;
       }
@@ -61,7 +64,7 @@
           {% endfor %}
         </div>
       </div>
-      <div class="col-3">
+      <div class="col-3 padding-left-5">
         <h2>News</h2>
         {% for idx in range([8, news['items']|length]|min) %}
           <div class="row border-bottom">
