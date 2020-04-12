@@ -40,9 +40,9 @@ def get_news():
 
 icon_map = {
     '01': '<span class="material-icons">wb_sunny</span>',
-    '02': '<img src="/icons/rain" />', # '<span class="material-icons">wb_cloudy</span>',
-    '03': '<img src="/icons/rain" />',
-    '04': '<img src="/icons/rain" />',
+    '02': '<span class="material-icons">wb_cloudy</span>',
+    '03': '<span class="material-icons">wb_cloudy</span>',
+    '04': '<span class="material-icons">wb_cloudy</span>',
     '09': '<img src="/icons/rain" />',
     '10': '<img src="/icons/rain" />',
     '11': '<span class="material-icons">flash_on</span>',

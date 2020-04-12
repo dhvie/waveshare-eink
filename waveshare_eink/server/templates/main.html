@@ -68,14 +68,23 @@
         border-bottom: 2px;
         border-color: black;
       }
+
+      #current-weather {
+        height: 50px;
+      }
+
+      #current-weather div {
+        font-size: 40px;
+        vertical-align: middle;
+      }
     </style>
   </head>
   <body>
     <div class="row">
       <div class="col-3">
         <div class="row">
-          <div class="col-6">
-            {{weather.current.weather[0].icon|icon|safe}} <h1>{{weather.current.temp}}&#8457</h1>
+          <div class="col-6" id="current-weather">
+            <div>{{weather.current.weather[0].icon|icon|safe}}</div> <h1>{{weather.current.temp}}&#8457</h1>
           </div>
         </div>
         <div class="row">
