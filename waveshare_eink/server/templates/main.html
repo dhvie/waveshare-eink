@@ -75,13 +75,13 @@
       <div class="col-3">
         <div class="row">
           <div class="col-6">
-            {{weather.current.weather[0].icon | icon}} <h1>{{weather.current.temp}}&#8457</h1>
+            {{weather.current.weather[0].icon|icon|safe}} <h1>{{weather.current.temp}}&#8457</h1>
           </div>
         </div>
         <div class="row">
           {% for idx in range([5, weather.hourly|count]|min) %}
             <div class='col-1 center'>
-              {{weather.hourly[idx].weather[0].icon | icon}}
+              {{weather.hourly[idx].weather[0].icon|icon|safe}}
               {{weather.hourly[idx].dt | format_datetime(format='time')}}<br />
               {{weather.hourly[idx].temp|round|int}}&#8457
             </div>
