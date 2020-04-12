@@ -69,8 +69,7 @@
         {% for idx in range([8, news['items']|length]|min) %}
           <div class="row border-bottom">
             <div class="col-6">
-              <p>{{news['items'][idx]['title']}}</p>
-              {{news['items'][idx]['summary']}}
+              {{news['items'][idx]['title']}}
             </div>
           </div>
         {% endfor %}
