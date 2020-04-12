@@ -48,10 +48,11 @@
           </div>
         </div>
         <div class="row">
-          {% for idx in range([6, weather.hourly|count]|min)%}
+          {% for idx in range([5, weather.hourly|count]|min)%}
             <div class='col-1 center'>
               <img src="{{weather.hourly[idx].weather[0].icon | icon(format='')}}" />
-              <b>{{weather.hourly[idx].temp}}&#8457</b>
+              {{weather.hourly[idx].dt | format_datetime(format='time')}}<br />
+              {{weather.hourly[idx].temp}}&#8457
             </div>
           {% endfor %}
         </div>
