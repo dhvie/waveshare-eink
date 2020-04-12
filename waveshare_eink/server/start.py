@@ -34,7 +34,7 @@ own_api = OpenWeatherAPI(args['own'])
 def get_weather():
     return own_api.call(args['lon'], args['lat'])
 
-icon_url = j2.Template('http://openweathermap.org/img/wn/{{icon}}{% if format %}@{{format}}{% enif %}.png')
+icon_url = j2.Template('http://openweathermap.org/img/wn/{{icon}}{% if format %}@{{format}}{% endif %}.png')
 
 @app.template_filter()
 def icon(value, format='2x'):
