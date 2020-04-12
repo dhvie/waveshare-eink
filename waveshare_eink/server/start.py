@@ -39,7 +39,7 @@ def pages(page=None):
     if page is None:
         page = 'main'
     weather = get_weather()
-    weather_icon = own_api.get_icon_url(weather['current']['weather']['icon'])
+    weather_icon = own_api.get_icon_url(weather['current']['weather'][0]['icon'])
     return render_template(f'{page}.html', weather=weather, weather_icon=weather_icon)
 
 
