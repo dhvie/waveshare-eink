@@ -7,6 +7,7 @@ import requests
 import argparse
 import os
 import feedparser
+from pathlib import Path
 
 class OpenWeatherAPI():
 
@@ -39,9 +40,9 @@ def get_news():
 
 icon_map = {
     '01': '<span class="material-icons">wb_sunny</span>',
-    '02': '<span class="material-icons">wb_cloudy</span>',
-    '03': '<span class="material-icons">wb_cloudy</span>',
-    '04': '<span class="material-icons">wb_cloudy</span>',
+    '02': '<img src="/icons/rain" />', # '<span class="material-icons">wb_cloudy</span>',
+    '03': '<img src="/icons/rain" />',
+    '04': '<img src="/icons/rain" />',
     '09': '<img src="/icons/rain" />',
     '10': '<img src="/icons/rain" />',
     '11': '<span class="material-icons">flash_on</span>',
@@ -67,7 +68,8 @@ def format_datetime(value, format='full'):
 
 @app.route('/icons/<name>', methods=['GET'])
 def get_icons(name):
-    with open(f'./icons/{name}.svg') as icon:
+    current_file = Path(__file__)
+    with open(f'{current_file.parent}/icons/{name}.svg', 'r') as icon:
         icon_str = icon.read()
 
     return icon_str
