@@ -81,7 +81,7 @@
         <div class="row">
           {% for idx in range([5, weather.hourly|count]|min) %}
             <div class='col-1 center'>
-              <img src="{{weather.hourly[idx].weather[0].icon | icon(format='')}}" />
+              <img src="{{weather.hourly[idx].weather[0].icon | icon}}" />
               {{weather.hourly[idx].dt | format_datetime(format='time')}}<br />
               {{weather.hourly[idx].temp|round|int}}&#8457
             </div>
