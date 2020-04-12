@@ -80,13 +80,13 @@
         vertical-align: middle;
       }
 
-      #current-weather > .material-icons {
+      #current-weather .material-icons {
         font-size: 80px;
         height: 80px;
         width: 80px;
       }
 
-      #forecast > img {
+      #forecast img {
         height: 24px;
         max-height: 24px;
         width: 24px;
@@ -103,9 +103,9 @@
             <div>{{weather.current.weather[0].icon|icon|safe}}</div> <h1>{{weather.current.temp}}&#8457</h1>
           </div>
         </div>
-        <div class="row" id='forecast'>
+        <div class="row" id="forecast">
           {% for idx in range([5, weather.hourly|count]|min) %}
-            <div class='col-1 center'>
+            <div class="col-1 center">
               {{weather.hourly[idx].weather[0].icon|icon|safe}}
               {{weather.hourly[idx].dt | format_datetime(format='time')}}<br />
               {{weather.hourly[idx].temp|round|int}}&#8457
