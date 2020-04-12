@@ -7,7 +7,7 @@
         font-family: 'Material Icons';
         font-weight: normal;
         font-style: normal;
-        font-size: 50px;  /* Preferred icon size */
+        font-size: 24px;  /* Preferred icon size */
         display: inline-block;
         line-height: 1;
         text-transform: none;
@@ -63,18 +63,32 @@
         align-content: center;
       }
       .border-bottom {
-        border-bottom: 2px;
+        border-bottom-width: 2px;
         border-color: black;
       }
 
       #current-weather {
         height: 50px;
+        margin-bottom: 10px;
       }
 
       #current-weather div {
-        font-size: 40px;
+        vertical-align: middle;
+
+      }
+      #current-weather h1 {
         vertical-align: middle;
       }
+
+      #current-weather > .material-icons {
+        font-size: 50px;
+      }
+
+      #forecast > img {
+        height: 24px;
+        object-fit: contain;
+      }
+
     </style>
   </head>
   <body>
@@ -85,7 +99,7 @@
             <div>{{weather.current.weather[0].icon|icon|safe}}</div> <h1>{{weather.current.temp}}&#8457</h1>
           </div>
         </div>
-        <div class="row">
+        <div class="row" id='forecast'>
           {% for idx in range([5, weather.hourly|count]|min) %}
             <div class='col-1 center'>
               {{weather.hourly[idx].weather[0].icon|icon|safe}}
