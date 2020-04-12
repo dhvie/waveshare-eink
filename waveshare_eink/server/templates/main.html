@@ -45,7 +45,7 @@
           </div>
         </div>
         <div class="row">
-          {% for idx in range(min(6,len(weather.hourly)))%}
+          {% for idx in range(min(6, (weather.hourly|length) ))%}
             <div class='col-1'>
               <img src="{{weather.hourly[idx].weather[0].icon | icon}}" /> <b>{{weather.hourly[idx].temp}}&#8457</b>
             </div>
