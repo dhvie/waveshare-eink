@@ -47,7 +47,7 @@ icon_map = {
     '11': '<span class="material-icons">flash_on</span>',
     '13': '<span class="material-icons">ac_unit</span>',
     '50': '<img src="/icons/fog" />'
-}'
+}
 
 @app.template_filter()
 def icon(value):
@@ -64,13 +64,13 @@ def format_datetime(value, format='full'):
         dt_format="%d/%m/%Y %H:%M"
     return dt.datetime.fromtimestamp(value).strftime(dt_format)
 
-@app.route('/icons/<name>', methods=['Get']):
+
+@app.route('/icons/<name>', methods=['GET'])
 def get_icons(name):
     with open(f'./icons/{name}.svg') as icon:
         icon_str = icon.read()
 
     return icon_str
-
 
 
 @app.route('/', methods=['GET'])
