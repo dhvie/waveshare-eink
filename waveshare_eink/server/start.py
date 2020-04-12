@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import render_template
+import datetime as dt
 import json
 import jinja2 as j2
 import requests
@@ -9,7 +10,7 @@ import os
 class OpenWeatherAPI():
 
     url = j2.Template('https://api.openweathermap.org/data/2.5/onecall?lat={{lat}}&lon={{lon}}&appid={{api_key}}&units={{units}}')
-    icon_url = j2.Template('http://openweathermap.org/img/wn/{{icon}}@2x.png')
+    
 
     def __init__(self, api_key):
         self.__api_key = api_key
@@ -33,13 +34,32 @@ own_api = OpenWeatherAPI(args['own'])
 def get_weather():
     return own_api.call(args['lon'], args['lat'])
 
+icon_url = j2.Template('http://openweathermap.org/img/wn/{{icon}}{{% if format %}}@{{format}}{{% enif %}}.png')
+
+@app.template_filter()
+def icon(value, format='2x'):
+    if format == '2x':
+        icon_format="2x"
+    else:
+        icon_format=""
+    return icon_url.render(icon=value, format=icon_format)
+
+@app.template_filter()
+def format_datetime(value, format='full'):
+    if format == 'date':
+        dt_format="%d/%m/%Y"
+    elif format == 'time':
+        dt_format = '%H:%M'
+    else:
+        dt_format="%d/%m/%Y %H:%M"
+    return dt.datetime.fromtimestamp(value).strftime(dt_format)
+
 @app.route('/', methods=['GET'])
 @app.route('/<page>', methods=['GET'])
 def pages(page=None):
     if page is None:
         page = 'main'
     weather = get_weather()
-    weather_icon = own_api.get_icon_url(weather['current']['weather'][0]['icon'])
-    return render_template(f'{page}.html', weather=weather, weather_icon=weather_icon)
+    return render_template(f'{page}.html', weather=weather)
 
 

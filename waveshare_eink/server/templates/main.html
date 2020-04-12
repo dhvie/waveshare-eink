@@ -3,30 +3,36 @@
   <head>
     <title>Hello, world!</title>
     <style>
+      h1 {
+        float: left;
+      }
+      img {
+        float: left;
+      }
       div {
         float: left;
         display: block;
       }
       .row {
-        width: 100%
+        width: 100%;
       }
       .col-1 {
-        width: 16.67%
+        width: 16.67%;
       }
       .col-2 {
-        width: 33.33%
+        width: 33.33%;
       }
       .col-3 {
-        width: 50%
+        width: 50%;
       }
       .col-4 {
-        width: 66.66%
+        width: 66.66%;
       }
       .col-5 {
-        width: 83.33%
+        width: 83.33%;
       }
       .col-6 {
-        width: 100%
+        width: 100%;
       }
     </style>
   </head>
@@ -35,8 +41,15 @@
       <div class="col-3">
         <div class="row">
           <div class="col-6">
-            <img src="{{weather_icon}}" /> <h1>{{weather.current.temp}} F</h1>
+            <img src="{{weather.current.weather[0].icon | icon}}" /> <h1>{{weather.current.temp}}&#8457</h1>
           </div>
+        </div>
+        <div class="row">
+          {% for idx in range(min(6,len(weather.hourly)))%}
+            <div class='col-1'>
+              <img src="{{weather.hourly[idx].weather[0].icon | icon}}" /> <b>{{weather.hourly[idx].temp}}&#8457</b>
+            </div>
+          {% enfor %}
         </div>
       </div>
       <div class="col-3">
