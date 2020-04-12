@@ -12,7 +12,7 @@ def main(args):
     if args.refresh >= 0:
         while True:
             output_path = source.refresh(display)
-            display.render_image(output_path)
+            display.render_image(output_path, clear_first=False)
             time.sleep(args.refresh)
     else :
         output_path = source.refresh(display)
