@@ -17,7 +17,7 @@ class OpenWeatherAPI():
     def call(self, lon, lat, units='imperial'):
         return json.loads(requests.get(OpenWeatherAPI.url.render(api_key=self.__api_key, lon=lon, lat=lat, units=units)).text)
 
-    def get_icon_url(icon):
+    def get_icon_url(self, icon):
         return OpenWeatherAPI.icon_url.render(icon=icon)
 
 args = {
