@@ -6,6 +6,7 @@ import jinja2 as j2
 import requests
 import argparse
 import os
+import feedparser
 
 class OpenWeatherAPI():
 
@@ -36,6 +37,11 @@ def get_weather():
 
 icon_url = j2.Template('http://openweathermap.org/img/wn/{{icon}}{% if format|length > 0 %}@{{format}}{% endif %}.png')
 
+def get_news():
+    bbc_rss = "http://feeds.bbci.co.uk/news/rss.xml?edition=uk"
+    feed = feedparser.parse( bbc_rss )
+    return feed
+
 @app.template_filter()
 def icon(value, format='2x'):
     if format == '2x':
@@ -60,6 +66,7 @@ def pages(page=None):
     if page is None:
         page = 'main'
     weather = get_weather()
-    return render_template(f'{page}.html', weather=weather)
+    feed = get_news()
+    return render_template(f'{page}.html', weather=weather, news=feed)
 
 

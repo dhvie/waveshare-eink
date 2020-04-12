@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Hello, world!</title>
+    <title>Kim Calendar</title>
     <style>
       h1 {
         float: left;
@@ -37,6 +37,10 @@
       .center {
         align-content: center;
       }
+      .border-bottom {
+        border-bottom: 2px;
+        border-color: black;
+      }
     </style>
   </head>
   <body>
@@ -48,7 +52,7 @@
           </div>
         </div>
         <div class="row">
-          {% for idx in range([5, weather.hourly|count]|min)%}
+          {% for idx in range([5, weather.hourly|count]|min) %}
             <div class='col-1 center'>
               <img src="{{weather.hourly[idx].weather[0].icon | icon(format='')}}" />
               {{weather.hourly[idx].dt | format_datetime(format='time')}}<br />
@@ -58,7 +62,18 @@
         </div>
       </div>
       <div class="col-3">
-        <h2>Events</h2>
+        <h2>News</h2>
+        {% for idx in range([8, news.items|count]|min) %}
+          <div class="row border-bottom">
+            <div class="col-6">
+              <h4>{{news.items[idx].title}}</h4>
+              <p>{{news.items[idx].description}}</p>
+            </div>
+          </div>
+        {% endfor %}
+        <div class="row">
+          <div class="col-6"></div>
+        </div>
       </div>
     </div>    
   </body>
