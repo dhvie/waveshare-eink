@@ -8,13 +8,15 @@ def main(args):
     display = DisplayManager()
 
     source = SourceHTML(url='http://127.0.0.1:8000/main')
-    output_path = source.refresh(display)
-    display.render_image(output_path)
 
     if args.refresh >= 0:
+        while True:
+            output_path = source.refresh(display)
+            display.render_image(output_path)
+            time.sleep(args.refresh)
+    else :
         output_path = source.refresh(display)
         display.render_image(output_path)
-        time.sleep(args.refresh)
 
 if __name__ == "__main__":
     parser = ArgumentParser()
