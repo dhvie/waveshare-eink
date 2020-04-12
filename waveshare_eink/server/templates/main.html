@@ -34,6 +34,9 @@
       .col-6 {
         width: 100%;
       }
+      .center {
+        align-content: center;
+      }
     </style>
   </head>
   <body>
@@ -46,8 +49,9 @@
         </div>
         <div class="row">
           {% for idx in range([6, weather.hourly|count]|min)%}
-            <div class='col-1'>
-              <img src="{{weather.hourly[idx].weather[0].icon | icon}}" /> <b>{{weather.hourly[idx].temp}}&#8457</b>
+            <div class='col-1 center'>
+              <img src="{{weather.hourly[idx].weather[0].icon | icon(format='')}}" />
+              <b>{{weather.hourly[idx].temp}}&#8457</b>
             </div>
           {% endfor %}
         </div>
