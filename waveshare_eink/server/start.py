@@ -19,9 +19,6 @@ class OpenWeatherAPI():
     def call(self, lon, lat, units='imperial'):
         return json.loads(requests.get(OpenWeatherAPI.url.render(api_key=self.__api_key, lon=lon, lat=lat, units=units)).text)
 
-    def get_icon_url(self, icon):
-        return OpenWeatherAPI.icon_url.render(icon=icon)
-
 args = {
     'own': os.environ['OWN_API'],
     'lon': os.environ['LON'],
@@ -35,20 +32,27 @@ own_api = OpenWeatherAPI(args['own'])
 def get_weather():
     return own_api.call(args['lon'], args['lat'])
 
-icon_url = j2.Template('http://openweathermap.org/img/wn/{{icon}}{% if format|length > 0 %}@{{format}}{% endif %}.png')
-
 def get_news():
     bbc_rss = "http://feeds.bbci.co.uk/news/rss.xml?edition=uk"
     feed = feedparser.parse( bbc_rss )
     return feed
 
+icon_map = {
+    '01': '<span class="material-icons">wb_sunny</span>',
+    '02': '<span class="material-icons">wb_cloudy</span>',
+    '03': '<span class="material-icons">wb_cloudy</span>',
+    '04': '<span class="material-icons">wb_cloudy</span>',
+    '09': '<img src="/icons/rain" />',
+    '10': '<img src="/icons/rain" />',
+    '11': '<span class="material-icons">flash_on</span>',
+    '13': '<span class="material-icons">ac_unit</span>',
+    '50': '<img src="/icons/fog" />'
+}'
+
 @app.template_filter()
-def icon(value, format='2x'):
-    if format == '2x':
-        icon_format="2x"
-    else:
-        icon_format=""
-    return icon_url.render(icon=value, format=icon_format)
+def icon(value):
+    material = icon_map.get(value[:2], "")
+    return material
 
 @app.template_filter()
 def format_datetime(value, format='full'):
@@ -59,6 +63,15 @@ def format_datetime(value, format='full'):
     else:
         dt_format="%d/%m/%Y %H:%M"
     return dt.datetime.fromtimestamp(value).strftime(dt_format)
+
+@app.route('/icons/<name>', methods=['Get']):
+def get_icons(name):
+    with open(f'./icons/{name}.svg') as icon:
+        icon_str = icon.read()
+
+    return icon_str
+
+
 
 @app.route('/', methods=['GET'])
 @app.route('/<page>', methods=['GET'])

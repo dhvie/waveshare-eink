@@ -33,6 +33,13 @@ class SourceHTML(Source):
                     src: local('Roboto'), local('Roboto-Regular');
                 }}
 
+                @font-face {{
+                    font-family: 'Material Icons';
+                    font-style: normal;
+                    font-weight: 400;
+                    src: local('Material Icons'), local('MaterialIcons-Regular');
+                }}
+
                 body {{
                     background-color: #FFFFFF;
                     font-family: Roboto;
