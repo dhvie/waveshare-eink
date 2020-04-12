@@ -26,7 +26,7 @@
         width: 33.33%;
       }
       .col-3 {
-        width: 50%;
+        width: 45%;
       }
       .col-4 {
         width: 66.66%;
@@ -69,8 +69,8 @@
         {% for idx in range([8, news['items']|length]|min) %}
           <div class="row border-bottom">
             <div class="col-6">
-              <h4>{{news['items'][idx]['title']}}</h4>
-              <p>{{news['items'][idx]['summary']}}</p>
+              <p>{{news['items'][idx]['title']}}</p>
+              {{news['items'][idx]['summary']}}
             </div>
           </div>
         {% endfor %}
