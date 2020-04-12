@@ -52,7 +52,7 @@
             <div class='col-1 center'>
               <img src="{{weather.hourly[idx].weather[0].icon | icon(format='')}}" />
               {{weather.hourly[idx].dt | format_datetime(format='time')}}<br />
-              {{weather.hourly[idx].temp}}&#8457
+              {{weather.hourly[idx].temp|round|int}}&#8457
             </div>
           {% endfor %}
         </div>
