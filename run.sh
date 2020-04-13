@@ -1,5 +1,6 @@
 #!/bin/bash
 
+source ~/.bashrc
 cd ~/waveshare-eink/waveshare_eink/server
 gunicorn start:app --daemon
 

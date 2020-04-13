@@ -1,13 +1,14 @@
 [Unit]
 Description=CalPi Service
 After=network.target
-StartLimitIntervalSec=0
+
 [Service]
-Type=simple
 Restart=always
-RestartSec=1
+StandardOutput=inherit
+StandardError=inherit
 User=calpi
-ExecStart=/bin/bash -c "source ~/waveshare-eink/run.sh"
+ExecStart=/home/calpi/waveshare-eink/run.sh
+WorkingDirectory=/home/calpi/
 
 [Install]
-WantedBy=multi-user.targe
+WantedBy=multi-user.target
