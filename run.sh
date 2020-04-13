@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/bin/bash -e
 
-source ~/.bashrc
-cd ~/waveshare-eink/waveshare_eink/server
+source /home/$(whoami)/.bashrc
+cd /home/$(whoami)/waveshare-eink/waveshare_eink/server
 gunicorn start:app --daemon
 
 cd ../../
