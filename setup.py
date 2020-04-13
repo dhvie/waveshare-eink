@@ -7,6 +7,13 @@ setup(name='waveshare_eink',
       author_email='dhvie85@gmail.com',
       packages=find_packages(),
       install_requires={
-            'gunicorn'
+            'requests',
+            'gunicorn',
+            'WeasyPrint',
+            'flask',
+            'feedparser',
+            'jinja2',
+            'spidev',
+            'RPi.GPIO'
       }
      )
