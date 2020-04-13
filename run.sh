@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-source /home/$(whoami)/.bashrc
+source /home/$(whoami)/setup-env.sh
 cd /home/$(whoami)/waveshare-eink/waveshare_eink/server
 gunicorn start:app --daemon
 
